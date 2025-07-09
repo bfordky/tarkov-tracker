@@ -225,27 +225,27 @@ function HideoutZonesTabs() {
         if (!Array.isArray(requirement)) return null;
         return (
           <Box>
-            <Typography variant="subtitle2" color="primary" gutterBottom>
+            <Typography variant="h6" color="primary" gutterBottom>
               Required Items:
             </Typography>
             <List dense>
               {(requirement as RequiredItem[]).map((item: RequiredItem, index: number) => (
-                <ListItem key={index} sx={{ py: 0 }}>
+                <ListItem key={index} sx={{ py: 1 }}>
                   <FormControlLabel
                     control={
                       <Checkbox
                         checked={checkedItems[item.id] || false}
                         onChange={() => handleItemCheck(item.id)}
-                        size="small"
+                        sx={{ transform: 'scale(1.5)' }}
                       />
                     }
                     label={
                       <Box>
-                        <Typography variant="body2">
+                        <Typography variant="h6">
                           {item.name} x{item.quantity}
                         </Typography>
                         {item.foundInRaid && (
-                          <Typography variant="caption" color="text.secondary">
+                          <Typography variant="body1" color="text.secondary">
                             Found in Raid
                           </Typography>
                         )}
@@ -348,40 +348,34 @@ function HideoutZonesTabs() {
           {upgrade.description}
         </Typography>
 
-        <Accordion sx={{ mt: 2 }}>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="subtitle1">Requirements</Typography>
-          </AccordionSummary>
-          <AccordionDetails>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-              {upgrade.requirements.items && (
-                <Box>
-                  {renderRequirement(upgrade.requirements.items, 'items')}
-                </Box>
-              )}
-              {upgrade.requirements.money && (
-                <Box>
-                  {renderRequirement(upgrade.requirements.money, 'money')}
-                </Box>
-              )}
-              {upgrade.requirements.traders && (
-                <Box>
-                  {renderRequirement(upgrade.requirements.traders, 'traders')}
-                </Box>
-              )}
-              {upgrade.requirements.skills && (
-                <Box>
-                  {renderRequirement(upgrade.requirements.skills, 'skills')}
-                </Box>
-              )}
-              {upgrade.requirements.hideoutZones && (
-                <Box>
-                  {renderRequirement(upgrade.requirements.hideoutZones, 'hideoutZones')}
-                </Box>
-              )}
+        {/* Requirements section (no longer collapsible) */}
+        <Box sx={{ mt: 2, mb: 2 }}>
+          {upgrade.requirements.items && (
+            <Box>
+              {renderRequirement(upgrade.requirements.items, 'items')}
             </Box>
-          </AccordionDetails>
-        </Accordion>
+          )}
+          {upgrade.requirements.money && (
+            <Box>
+              {renderRequirement(upgrade.requirements.money, 'money')}
+            </Box>
+          )}
+          {upgrade.requirements.traders && (
+            <Box>
+              {renderRequirement(upgrade.requirements.traders, 'traders')}
+            </Box>
+          )}
+          {upgrade.requirements.skills && (
+            <Box>
+              {renderRequirement(upgrade.requirements.skills, 'skills')}
+            </Box>
+          )}
+          {upgrade.requirements.hideoutZones && (
+            <Box>
+              {renderRequirement(upgrade.requirements.hideoutZones, 'hideoutZones')}
+            </Box>
+          )}
+        </Box>
 
         <Accordion sx={{ mt: 1 }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
